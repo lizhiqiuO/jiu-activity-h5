@@ -15,4 +15,10 @@ import { vantPlugins } from './plugins/vant.js';
 //全局公共组件
 import components from './plugins/components.js';
 
-createApp(App).use(vuexStore).use(piniaStore).use(router).use(vantPlugins).use(components).mount('#app');
+createApp(App)
+    .use(vuexStore)
+    .use(piniaStore)
+    .use(router)
+    .use(vantPlugins)
+    .use(components)
+    .mount('#app');

@@ -31,7 +31,7 @@ export default defineConfig(({ command, mode }) => {
 		server: {
 			host: 'jiu.jiu.test.com',
 			proxy: {
-				'/': {
+				'/home': {
 					target: 'http://localhost:5173',
 				}
 			}

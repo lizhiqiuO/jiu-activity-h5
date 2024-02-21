@@ -1,7 +1,27 @@
-<script setup lang="ts">
-const clickToRoute = () => {
+<script lang="ts">
+export default { name: 'home' };
+</script>
 
+<script setup lang="ts">
+import { ref, toRefs, reactive }  from 'vue'
+import { getBaseInfo } from '@/api/home'
+import {routerResponse} from '@/interface/home'
+
+let routerInfo = ref([] as routerResponse[])
+
+const useBaseInfo = async () => {
+  try {
+    const res = await getBaseInfo();
+    const {errno, data} = res;
+    if (+errno === 0 && data) {
+      routerInfo.value = data.routerInfo
+    }
+  } catch (error) {
+  }
 }
+
+useBaseInfo()
+console.log(routerInfo)
 </script>
 
 <template>

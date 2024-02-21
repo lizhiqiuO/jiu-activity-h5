@@ -8,7 +8,6 @@ export default defineConfig(({ command, mode }) => {
 	// 检查process.cwd()路径下.env.develeport.local、.env.development、.env.local、.env这四个环境文件
 	loadEnv(mode, process.cwd());
 	return {
-
 		// 静态资源基础路径 base: './' || '',
 		base: '',
 
@@ -30,12 +29,10 @@ export default defineConfig(({ command, mode }) => {
 
 		// 跨域代理
 		server: {
-			host: '0.0.0.0',
+			host: 'jiu.jiu.test.com',
 			proxy: {
-				'/api': {
-					target: 'https://api.inews.qq.com',
-					changeOrigin: true,
-					rewrite: (path) => path.replace(/^\/api/, '') // 将匹配到的api替换成''
+				'/': {
+					target: 'http://localhost:5173',
 				}
 			}
 		}

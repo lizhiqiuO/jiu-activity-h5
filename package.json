@@ -7,11 +7,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "server": "live-server ./ --port=8081",
-    "deploy": "bash deploy.sh"
+    "deploy": "bash deploy.sh",
+    "mockServer": "node ./mockServer/index.cjs"
   },
   "dependencies": {
     "axios": "^0.26.1",
     "pinia": "^2.0.20",
+    "pixi.js": "^7.4.0",
     "vant": "^3.4.6",
     "vue": "^3.2.25",
     "vue-router": "^4.0.14",
@@ -27,6 +29,7 @@
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vite-plugin-style-import": "1.4.1",
-    "vue-tsc": "^0.29.8"
+    "vue-tsc": "^0.29.8",
+    "mockjs": "^1.1.0"
   }
 }

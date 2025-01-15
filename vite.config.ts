@@ -35,9 +35,9 @@ export default function ({ command, mode }: ConfigEnv): UserConfig {
       ],
     },
     server: {
-      host: true,
+      host: 'jiu.jiu.test.com',
       hmr: true,
-      https: true,
+      https: false,
     },
     plugins: createVitePlugins(viteEnv, isProduction),
     build: {

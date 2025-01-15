@@ -1,58 +1,20 @@
-import { createVitePlugins } from './build/vite/plugins';
-import { resolve } from 'path';
-import { ConfigEnv, loadEnv, UserConfig } from 'vite';
-import { wrapperEnv } from './build/utils';
+import { fileURLToPath, URL } from 'node:url';
 
-const pathResolve = (dir: string) => {
-  return resolve(process.cwd(), '.', dir);
-};
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 // https://vitejs.dev/config/
-export default function ({ command, mode }: ConfigEnv): UserConfig {
-  const isProduction = command === 'build';
-  const root = process.cwd();
-  const env = loadEnv(mode, root);
-  const viteEnv = wrapperEnv(env);
-
-  return {
-    root,
-    resolve: {
-      alias: [
-        // @/xxxx => src/xxxx
-        {
-          find: /@\//,
-          replacement: pathResolve('src') + '/',
-        },
-        // #/xxxx => types/xxxx
-        {
-          find: /#\//,
-          replacement: pathResolve('types') + '/',
-        },
-      ],
+export default defineConfig({
+  plugins: [vue(), vueJsx()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
-    server: {
-      host: 'jiu.jiu.test.com',
-      hmr: true,
-      https: false,
-    },
-    plugins: createVitePlugins(viteEnv, isProduction),
-    build: {
-      minify: 'terser',
-      terserOptions: {
-        compress: {
-          //生产环境时移除console
-          drop_console: true,
-          drop_debugger: true,
-        },
-      },
-    },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          // 配置 nutui 全局 scss 变量
-          additionalData: `@import "@nutui/nutui/dist/styles/variables.scss";@import '@/styles/mixin.scss'; @import '@/styles/vant.scss';`,
-        },
-      },
-    },
-  };
-}
+  },
+  server: {
+    host: 'jiu.jiu.test.com',
+    port: 8080,
+    https: false,
+  },
+});

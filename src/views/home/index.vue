@@ -1,6 +1,4 @@
 <template>home</template>
 
-<script lang="ts" setup name="HomePage">
-  import { computed } from 'vue';
-</script>
+<script lang="ts" setup name="HomePage"></script>
 <style lang="scss"></style>

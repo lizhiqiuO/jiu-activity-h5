@@ -4,10 +4,8 @@
  * @Description: file content
  */
 
-import { i18n } from '@/i18n';
-import { Component } from 'vue';
+import { Component, createApp, ref, defineComponent } from 'vue';
 import BaseModal from '../BasicModal.vue';
-import { createApp, ref, defineComponent } from 'vue';
 
 export const openFactoryModal = ({ renderComp, size }: { size?: 'normal' | 'large'; renderComp: Function }) => {
   return new Promise<string>((resolve, reject) => {
@@ -45,7 +43,6 @@ export const openFactoryModal = ({ renderComp, size }: { size?: 'normal' | 'larg
 
 const mountPropModal = (component: Component) => {
   const app = createApp(component);
-  app.use(i18n);
   const root = document.createElement('div');
 
   document.body.appendChild(root);

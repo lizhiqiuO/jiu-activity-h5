@@ -2,13 +2,13 @@ export const routes = [
   {
     path: '/',
     redirect: '/home',
-    component: () => import('@/layout/basic/index.vue'),
+    component: () => import('@/views/home/index.vue'),
     children: [
       {
         path: 'home',
         component: () => import('@/views/home/index.vue'),
         meta: {
-          title: 'tabbar.home',
+          title: '首页',
           keepAlive: true,
         },
       },
